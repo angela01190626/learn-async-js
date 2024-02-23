@@ -46,6 +46,11 @@ const server = http.createServer((req, res) => {
                 return incident.id === `MABOS00${id}`
             })));
         }
+        else {
+            // If the request does not contain enough parameters, send a bad response
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('The expected parameters are not provided.');
+        }
     } else {
         // If the request is for an unsupported endpoint, send a not found response
         res.writeHead(404, { 'Content-Type': 'text/plain' });
