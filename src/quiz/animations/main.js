@@ -13,20 +13,29 @@ const aliceTumbling = [
   const alice2 = document.querySelector("#alice2");
   const alice3 = document.querySelector("#alice3");
 
-  alice1
-    .animate(aliceTumbling, aliceTiming)
-    .finished
-    .then((res) => {
-        console.log(res);
-        alice2
-            .animate(aliceTumbling, aliceTiming)
-            .finished
-            .then((res) => {
-                console.log(res);
-                alice3.animate(aliceTumbling, aliceTiming);
-            })
-    });
+  // alice1
+  //   .animate(aliceTumbling, aliceTiming)
+  //   .finished
+  //   .then((res) => {
+  //       console.log(res);
+  //       alice2
+  //           .animate(aliceTumbling, aliceTiming)
+  //           .finished
+  //           .then((res) => {
+  //               console.log(res);
+  //               alice3.animate(aliceTumbling, aliceTiming);
+  //           })
+  //   });
 
+async function animateImage() {
+  try {
+    await alice1.animate(aliceTumbling, aliceTiming).finished.then((res) => console.log(res));
+    await alice2.animate(aliceTumbling, aliceTiming).finished.then((res) => console.log(res));
+    await alice3.animate(aliceTumbling, aliceTiming).finished.then((res) => console.log(res));
+  } catch (err) {
+    console.log(`Error when animating: ${err.message}`)
+  }
+}
   // Promise chain  
   // alice1.animate(aliceTumbling, aliceTiming).finished  
   //   .then(() => {
@@ -40,3 +49,5 @@ const aliceTumbling = [
   //             .finished;
   //   })
   //   .catch((err) => alert(`Error when promising ... ${err.message}`));
+
+  animateImage()
