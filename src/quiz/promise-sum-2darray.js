@@ -25,20 +25,23 @@ function sum2DArray(arr, rowIndex) {
     });    
 }
 
-rowSum = []
+async function calculateSum() {
+    rowSum = []
 
-for (let i = 0; i < array2D.length; i++) {
-    rowSum.push(sum2DArray(array2D, i))
+    for (let i = 0; i < array2D.length; i++) {
+        rowSum.push(sum2DArray(array2D, i))
+    }
+
+    try {
+        const sum = await Promise.all(rowSum);
+        const totalSum = sum.reduce((acc, value) => acc + value, 0);
+    
+        console.log(`Sum = ${totalSum}`);
+        return totalSum;
+      } catch (error) {
+        console.error(`Failed to fetch: ${error}`);
+        throw error; // Propagate the error if needed
+      }
 }
 
-Promise.all(rowSum)
-    .then((rowSum) => {
-      let sum = 0;
-      rowSum.forEach(element => {
-        sum += element;
-      });
-      console.log(`Sum = ${sum}`)
-    })
-    .catch((error) => {
-        console.error(`Failed to fetch: ${error}`);
-    });
+calculateSum().then((status) => console.log(status))
