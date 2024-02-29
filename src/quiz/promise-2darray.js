@@ -18,7 +18,7 @@ function sum2DArray(arr) {
             reject('BAD INPUT: Expected array as input');
         }
         console.log('returning from sum');
-    });
+    });    
 }
 
 // Example usage:
@@ -29,7 +29,9 @@ const array2D = [
 ];
 
 const sumPromise1 = sum2DArray(array2D);
-console.log(sumPromise1);
+sumPromise1.then((res) => console.log(res))
+           .catch(error => console.log(error));
 
 const sumPromise2 = sum2DArray('array2D');
-console.log(sumPromise2);
+sumPromise2.then((res) => console.log(res))
+           .catch(error => console.log(error));
